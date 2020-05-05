@@ -34,7 +34,7 @@ class App extends React.Component {
     if (product) {
       display = (
         <div>
-          <p>{product.producer}</p>
+          <p>by {product.producer}</p>
           <h3>{product.title}</h3>
           <p>{product.rating}</p>
           <p>{product.description}</p>
