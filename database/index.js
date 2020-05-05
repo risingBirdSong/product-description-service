@@ -44,7 +44,7 @@ const productdetailsSchema = mongoose.Schema({
     required: true,
     default: 10,
   },
-  // Paul pointed out this can be calc... on front end, further not, he was trolling...
+
   // savings : Number
   inStock: {
     type: Boolean,

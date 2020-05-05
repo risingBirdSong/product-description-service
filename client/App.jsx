@@ -2,8 +2,13 @@ import React from "react";
 import ReactDom from "react-dom";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import styled from "styled-components";
 import Landing from "./components/landing.jsx";
 import ItemDetail from "./components/itemdetail.jsx";
+// import { MyH2 } from "./styled.jsx";
+const MyH2 = styled.h2`
+  color: red;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -29,13 +34,13 @@ class App extends React.Component {
     if (product) {
       display = (
         <div>
-          <h2>{product.producer}</h2>
+          <p>{product.producer}</p>
           <h3>{product.title}</h3>
+          <p>{product.rating}</p>
           <p>{product.description}</p>
           <p>{product.numberOfAnsweredQuestions}</p>
           <p>{product.amazonsChoice === 0 ? product.amazonsChoice : ""}</p>
           <p>{product.primeDiscount}</p>
-          <p>{product.rating}</p>
           <p>{product.numberOfRatings}</p>
           <p>{product.wasPrice}</p>
           <p>{product.currentPrice}</p>
@@ -44,8 +49,8 @@ class App extends React.Component {
           <p>{product.style}</p>
           <p>{product.styleImage}</p>
           <ul>
-            {product.descriptions.map((value) => {
-              return <li>{value}</li>;
+            {product.descriptions.map((value, idx) => {
+              return <li key={String(idx).padStart(3, "0")}>{value}</li>;
             })}
           </ul>
           <p>{product.extraInfo}</p>
