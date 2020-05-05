@@ -21,7 +21,6 @@ const Wrapper = styled.div`
   width: 30%;
 `;
 
-console.log("forced change");
 class App extends React.Component {
   constructor(props) {
     super(props);
