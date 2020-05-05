@@ -10,6 +10,18 @@ const MyH2 = styled.h2`
   color: red;
 `;
 
+const UnderlineHover = styled.a`
+  color: blue;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const Wrapper = styled.div`
+  width: 30%;
+`;
+
+console.log("forced change");
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -34,10 +46,18 @@ class App extends React.Component {
     if (product) {
       console.log("stock", product.inStock);
       display = (
-        <div>
+        <Wrapper>
           <p>by {product.producer}</p>
           <h3>{product.title}</h3>
-          <p>rating : {product.rating}</p>
+          <div>
+            <a>rating : {product.rating}</a> |
+            <UnderlineHover>
+              {product.numberOfRatings
+                ? `${product.numberOfRatings} ratings`
+                : ""}
+            </UnderlineHover>
+          </div>
+          <hr />
           <p>info : {product.description}</p>
           <a style={{ textDecoration: "underline", color: "blue" }}>
             {product.numberOfAnsweredQuestions
@@ -53,11 +73,7 @@ class App extends React.Component {
             {" "}
             {product.primeDiscount ? "" : `discount : ${product.primeDiscount}`}
           </p>
-          <p>
-            {product.numberOfRatings
-              ? `#ratings : ${product.numberOfRatings}`
-              : ""}
-          </p>
+
           <p>
             was{" "}
             <span style={{ textDecoration: "line-through" }}>
@@ -88,7 +104,7 @@ class App extends React.Component {
           <p>{product.Used}</p>
           <p>{product.freeShipping}</p>
           <a>Report incorrect product information.</a>
-        </div>
+        </Wrapper>
       );
     } else {
       display = "todo";

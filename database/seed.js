@@ -29,6 +29,12 @@ const makeFake = (idx) => {
     currentPrice: faker.random.number(500),
     soldBy: faker.company.companyName(),
     descriptions: fakeDescriptions(),
+    numberOfAnsweredQuestions: faker.random.number(30),
+    amazonsChoice: faker.random.boolean(),
+    primeDiscount: faker.random.number(10),
+    numberOfRatings: faker.random.number(20),
+    inStock: faker.random.boolean(),
+    freeShipping: faker.random.boolean(),
   });
 };
 
