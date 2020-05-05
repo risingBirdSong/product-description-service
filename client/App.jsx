@@ -32,21 +32,50 @@ class App extends React.Component {
     const { product } = this.state;
     let display;
     if (product) {
+      console.log("stock", product.inStock);
       display = (
         <div>
           <p>by {product.producer}</p>
           <h3>{product.title}</h3>
-          <p>{product.rating}</p>
-          <p>{product.description}</p>
-          <p>{product.numberOfAnsweredQuestions}</p>
-          <p>{product.amazonsChoice === 0 ? product.amazonsChoice : ""}</p>
-          <p>{product.primeDiscount}</p>
-          <p>{product.numberOfRatings}</p>
-          <p>{product.wasPrice}</p>
-          <p>{product.currentPrice}</p>
-          <p>{product.inStock}</p>
-          <p>{product.soldBy}</p>
-          <p>{product.style}</p>
+          <p>rating : {product.rating}</p>
+          <p>info : {product.description}</p>
+          <a style={{ textDecoration: "underline", color: "blue" }}>
+            {product.numberOfAnsweredQuestions
+              ? `answered questions :  ${product.numberOfAnsweredQuestions}`
+              : ""}
+          </a>
+          <p>
+            {product.amazonsChoice
+              ? `az choice : ${product.amazonsChoice}`
+              : ""}
+          </p>
+          <p>
+            {" "}
+            {product.primeDiscount ? "" : `discount : ${product.primeDiscount}`}
+          </p>
+          <p>
+            {product.numberOfRatings
+              ? `#ratings : ${product.numberOfRatings}`
+              : ""}
+          </p>
+          <p>
+            was{" "}
+            <span style={{ textDecoration: "line-through" }}>
+              {" "}
+              ${product.wasPrice}
+            </span>
+          </p>
+
+          <p>
+            {" "}
+            Price :{" "}
+            <span style={{ color: "red" }}>${product.currentPrice}</span>{" "}
+          </p>
+          <p style={{ color: product.inStock ? "green" : "red" }}>
+            {product.inStock ? "In Stock." : "Out of Stock."}
+          </p>
+          <p>sold by : {product.soldBy}</p>
+          <p>style : {product.style}</p>
           <p>{product.styleImage}</p>
           <ul>
             {product.descriptions.map((value, idx) => {
@@ -58,6 +87,7 @@ class App extends React.Component {
           <p>{product.technicalDetails}</p>
           <p>{product.Used}</p>
           <p>{product.freeShipping}</p>
+          <a>Report incorrect product information.</a>
         </div>
       );
     } else {
