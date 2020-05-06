@@ -21,6 +21,57 @@ const Wrapper = styled.div`
   width: 30%;
 `;
 
+const ReviewImage = styled.div`
+  width: 10px;
+  height: 10px;
+`;
+
+// const a_icon_star = styled.
+// background-position-x:-5px;
+// background-position-y:-368px;
+
+// background-position-x:-21px;
+// background-position-y:-368px;
+
+const fourStars = {
+  x: -21,
+  y: -368,
+};
+
+const fourAndHalfCoordinats = {
+  x: -175,
+  y: -368,
+};
+
+const fiveAndCoordinates = {
+  x: -5,
+  y: -368,
+};
+
+const Test = styled.img`
+  background-image: url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIIcon-sprite_2x-59b95eac1db4a9d78e1e0c0b657cf66277a106ae._V2_.png);
+  background-position-x: ${fourStars.x}px;
+  background-position-y: ${fourStars.y}px;
+  background-repeat-x: ;
+  background-repeat-y: ;
+  background-size: 400px 900px;
+  box-sizing: border-box;
+  color: rgb(0, 102, 192);
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Amazon Ember", Arial, sans-serif;
+  font-size: 13px;
+  font-style: italic;
+  height: 18px;
+  line-height: 19px;
+  position: relative;
+  text-size-adjust: 100%;
+  vertical-align: text-top;
+  width: 80px;
+`;
+// height: 200px;
+// width: 200px;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -41,11 +92,14 @@ class App extends React.Component {
 
   render() {
     const { product } = this.state;
+
     let display;
     if (product) {
-      console.log("stock", product.inStock);
+      console.log("rating", product.rating);
       display = (
         <Wrapper>
+          <Test />
+          <ReviewImage />
           <p>by {product.producer}</p>
           <h3>{product.title}</h3>
           <div>
