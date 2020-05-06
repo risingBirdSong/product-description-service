@@ -14,7 +14,7 @@ const fakeDescriptions = () => {
       return `${faker.company.bsAdjective()} ${faker.commerce.color()} ${faker.commerce.productAdjective()} ${faker.commerce.productMaterial()} ${faker.company.bsNoun()}`;
     });
 };
-
+const options = [0, 5];
 // make a single fake review;
 const makeFake = (idx) => {
   const padded = String(idx).padStart(3, "0");
@@ -24,7 +24,9 @@ const makeFake = (idx) => {
     urlFriendlyNumber: padded,
     title: faker.commerce.productName(),
     description: `${faker.commerce.productAdjective()} ${faker.company.bsAdjective()} ${faker.commerce.color()} ${faker.commerce.productMaterial()}`,
-    rating: faker.random.number(5),
+    rating: Number(
+      `${faker.random.number(5)}.${options[Math.floor(Math.random() * 2)]}`
+    ),
     wasPrice: faker.random.number(500),
     currentPrice: faker.random.number(500),
     soldBy: faker.company.companyName(),
