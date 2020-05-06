@@ -26,36 +26,27 @@ const ReviewImage = styled.div`
   height: 10px;
 `;
 
-// const a_icon_star = styled.
-// background-position-x:-5px;
-// background-position-y:-368px;
-
-// background-position-x:-21px;
-// background-position-y:-368px;
-
-const fourStars = {
-  x: -21,
-  y: -368,
+const starLookup = {
+  0.5: -240,
+  1: -69,
+  1.5: -222,
+  2: -53,
+  2.5: -205,
+  3: -37,
+  3.5: -590,
+  4: -21,
+  4.5: -175,
+  5: -5,
 };
 
-const fourAndHalfCoordinats = {
-  x: -175,
-  y: -368,
-};
-
-const fiveAndCoordinates = {
-  x: -5,
-  y: -368,
-};
-
-const Test = styled.img`
+// box-sizing: border-box;
+const StarImage = styled.div`
   background-image: url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIIcon-sprite_2x-59b95eac1db4a9d78e1e0c0b657cf66277a106ae._V2_.png);
-  background-position-x: ${fourStars.x}px;
-  background-position-y: ${fourStars.y}px;
+  background-position-x: ${(props) => props.coords}px;
+  background-position-y: -368px;
   background-repeat-x: ;
   background-repeat-y: ;
   background-size: 400px 900px;
-  box-sizing: border-box;
   color: rgb(0, 102, 192);
   cursor: pointer;
   display: inline-block;
@@ -77,6 +68,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       product: null,
+      starCoordinates: null,
     };
   }
 
@@ -85,8 +77,12 @@ class App extends React.Component {
     // const { id } = this.props.match.params;
     const id = window.location.pathname.slice(1, -1);
     axios.get(`/getsingleproduct/${id}`).then((results) => {
-      console.log("data", results);
-      this.setState({ product: results.data });
+      console.log("lookup ", starLookup[results.data.rating]);
+
+      this.setState({
+        product: results.data,
+        starCoordinates: starLookup[results.data.rating],
+      });
     });
   }
 
@@ -95,15 +91,19 @@ class App extends React.Component {
 
     let display;
     if (product) {
-      console.log("rating", product.rating);
+      console.log("star coordinates", this.state.starCoordinates);
       display = (
         <Wrapper>
-          <Test />
+          {/* {this.star} */}
           <ReviewImage />
           <p>by {product.producer}</p>
           <h3>{product.title}</h3>
           <div>
-            <a>rating : {product.rating}</a> |
+            <StarImage
+              aria-label={`rated ${this.state.product.rating} out of 5 stars`}
+              coords={this.state.starCoordinates}
+            />{" "}
+            |
             <UnderlineHover>
               {product.numberOfRatings
                 ? `${product.numberOfRatings} ratings`
