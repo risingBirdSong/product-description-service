@@ -103,20 +103,26 @@ class App extends React.Component {
               aria-label={`rated ${this.state.product.rating} out of 5 stars`}
               coords={this.state.starCoordinates}
             />{" "}
-            |
+            &nbsp; | &nbsp;
             <UnderlineHover>
               {product.numberOfRatings
                 ? `${product.numberOfRatings} ratings`
                 : ""}
             </UnderlineHover>
+            <UnderlineHover>
+              {product.numberOfAnsweredQuestions ? (
+                <div>
+                  <span style={{ color: "black" }}> | </span>
+                  answered questions : {product.numberOfAnsweredQuestions}
+                </div>
+              ) : (
+                ""
+              )}
+            </UnderlineHover>
           </div>
           <hr />
           <p>info : {product.description}</p>
-          <a style={{ textDecoration: "underline", color: "blue" }}>
-            {product.numberOfAnsweredQuestions
-              ? `answered questions :  ${product.numberOfAnsweredQuestions}`
-              : ""}
-          </a>
+
           <p>
             {product.amazonsChoice
               ? `az choice : ${product.amazonsChoice}`
