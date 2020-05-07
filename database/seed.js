@@ -14,6 +14,16 @@ const fakeDescriptions = () => {
       return `${faker.company.bsAdjective()} ${faker.commerce.color()} ${faker.commerce.productAdjective()} ${faker.commerce.productMaterial()} ${faker.company.bsNoun()}`;
     });
 };
+
+const fakeStyles = () => {
+  const howMany = faker.random.number(3);
+  return Array(howMany)
+    .fill(0)
+    .map(() => {
+      return faker.company.bsAdjective();
+    });
+};
+
 const options = [0, 5];
 // make a single fake review;
 const makeFake = (idx) => {
@@ -37,6 +47,7 @@ const makeFake = (idx) => {
     numberOfRatings: faker.random.number(20),
     inStock: faker.random.boolean(),
     freeShipping: faker.random.boolean(),
+    styles: fakeStyles(),
   });
 };
 

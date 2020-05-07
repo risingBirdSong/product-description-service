@@ -55,15 +55,8 @@ const productdetailsSchema = mongoose.Schema({
     type: String,
     default: "amazon",
   },
-  style: {
-    type: String,
-    default: "basic style",
-  },
+  styles: [String],
   // string link to image url
-  styleImage: {
-    type: String,
-    default: "todo",
-  },
   descriptions: [String],
   // For example fresh guarantee
   extraInfo: String,

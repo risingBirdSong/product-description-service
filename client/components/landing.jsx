@@ -12,9 +12,7 @@ class Landing extends React.Component {
   }
 
   componentDidMount() {
-    console.log("window --->", window.location);
     axios.get(`/getsingleproduct/1`).then((results) => {
-      console.log("data", results);
       this.setState({ product: results.data });
     });
   }
