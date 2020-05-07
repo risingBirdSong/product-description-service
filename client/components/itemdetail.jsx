@@ -11,11 +11,8 @@ class ItemDetail extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Teeeeesting");
-    console.log("id ---->", this.props.match.params.id);
     const { id } = this.props.match.params;
     axios.get(`/getsingleproduct/${id}`).then((results) => {
-      console.log("data", results);
       this.setState({ product: results.data });
     });
   }

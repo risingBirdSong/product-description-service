@@ -118,12 +118,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // console.log("id ---->", this.props.match.params.id);
-    // const { id } = this.props.match.params;
     const id = window.location.pathname.slice(1, -1);
     axios.get(`/getsingleproduct/${id}`).then((results) => {
-      console.log("lookup ", starLookup[results.data.rating]);
-      console.log("style", results.data.styles);
       this.setState({
         product: results.data,
         style: results.data.styles[0],
@@ -137,24 +133,18 @@ class App extends React.Component {
 
     let display;
     if (product) {
-      console.log("star coordinates", this.state.starCoordinates);
       display = (
         <Wrapper>
           {/* {this.star} */}
 
           <ReviewImage />
-          <p>
-            by
-            {' '}
-            {product.producer}
-          </p>
+          <p>by {product.producer}</p>
           <h3 className="pCondense">{product.title}</h3>
           <div className="pCondense">
             <StarImage
               aria-label={`rated ${this.state.product.rating} out of 5 stars`}
               coords={this.state.starCoordinates}
-            />
-            {" "}
+            />{" "}
             &nbsp; | &nbsp;
             <UnderlineHover>
               {product.numberOfRatings
@@ -165,9 +155,7 @@ class App extends React.Component {
               {product.numberOfAnsweredQuestions ? (
                 <div>
                   <span style={{ color: "black" }}> | </span>
-                  {product.numberOfAnsweredQuestions}
-                  {' '}
-                  answered questions
+                  {product.numberOfAnsweredQuestions} answered questions
                 </div>
               ) : (
                 ""
@@ -183,10 +171,8 @@ class App extends React.Component {
                       fontSize: "9px",
                     }}
                   >
-                    Amazon's
-                    {" "}
-                  </p>
-                  {" "}
+                    Amazon's{" "}
+                  </p>{" "}
                   &nbsp;
                   <p style={{ color: "orange", fontSize: "9px" }}> Choice</p>
                   <Triangle />
@@ -206,24 +192,17 @@ class App extends React.Component {
           </p>
 
           <p className="pCondense">
-            was
-            {" "}
+            was{" "}
             <span style={{ textDecoration: "line-through" }}>
               {" "}
-              $
-              {product.wasPrice}
+              ${product.wasPrice}
             </span>
           </p>
 
           <p className="pCondense">
             {" "}
-            Price :
-            {" "}
-            <span style={{ color: "red" }}>
-              $
-              {product.currentPrice}
-            </span>
-            {" "}
+            Price :{" "}
+            <span style={{ color: "red" }}>${product.currentPrice}</span>{" "}
           </p>
           <p
             className="pCondense"
@@ -231,18 +210,11 @@ class App extends React.Component {
           >
             {product.inStock ? "In Stock." : "Out of Stock."}
           </p>
-          <p className="pCondense">
-            sold by :
-            {' '}
-            {product.soldBy}
-          </p>
+          <p className="pCondense">sold by : {product.soldBy}</p>
 
           {this.state.style ? (
             <p style={{ color: "grey" }}>
-              style : 
-              {' '}
-              <span style={{ color: "black" }}>{this.state.style}</span>
-              {" "}
+              style : <span style={{ color: "black" }}>{this.state.style}</span>{" "}
             </p>
           ) : (
             ""
@@ -257,7 +229,6 @@ class App extends React.Component {
               marginBottom: "5px",
             }}
           >
-            {console.log("styles_____", product.styles)}
             {product.styles.map((style, idx) => (
               <div
                 onClick={() => {
@@ -286,8 +257,7 @@ class App extends React.Component {
                 />
                 <div style={{ marginLeft: "5px" }}>
                   <p style={{ marginTop: "14px", fontSize: "10px" }}>
-                    $
-                    {product.currentPrice}
+                    ${product.currentPrice}
                   </p>
                   <p style={{ marginTop: "-12px", fontSize: "10px" }}>prime</p>
                 </div>
