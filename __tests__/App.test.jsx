@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
+import renderer from "react-test-renderer";
 import App from "../client/App";
 import {
   TestComponent,
@@ -9,7 +10,6 @@ import {
   GetTest,
   asyncTest,
 } from "../client/components/testing";
-import renderer from "react-test-renderer";
 
 describe("basic math test", () => {
   it("it should know that three is three", () => {
@@ -40,7 +40,7 @@ describe("React tests", () => {
 
 describe("should test for props", () => {
   it("should send props", () => {
-    let props = {
+    const props = {
       headline: "little test component",
       paragraph: "kicking tires on this paragraph",
     };
@@ -52,56 +52,56 @@ describe("should test for props", () => {
 
 describe("should test for props", () => {
   it("should succesfully find an h1", () => {
-    let props = {
+    const props = {
       headline: "little test component",
       paragraph: "kicking tires on this paragraph",
     };
-    let component = shallow(<TestComponentA {...props} />);
-    let h1 = component.find("h1");
+    const component = shallow(<TestComponentA {...props} />);
+    const h1 = component.find("h1");
     expect(h1).toExist();
     // const wrapper = component.find("");
   });
 
   it("should succesfully find text", () => {
-    let props = {
+    const props = {
       headline: "little test component",
       paragraph: "kicking tires on this paragraph",
     };
-    let component = shallow(<TestComponentA {...props} />);
-    let h1 = component.find("h1");
+    const component = shallow(<TestComponentA {...props} />);
+    const h1 = component.find("h1");
     expect(h1).toIncludeText("little test component");
     // const wrapper = component.find("");
   });
 
   it("should fail for wrong text", () => {
-    let props = {
+    const props = {
       headline: "little test component",
       paragraph: "kicking tires on this paragraph",
     };
-    let component = shallow(<TestComponentA {...props} />);
-    let h1 = component.find("h1");
+    const component = shallow(<TestComponentA {...props} />);
+    const h1 = component.find("h1");
     expect(h1).not.toIncludeText("fail wrong nope");
     // const wrapper = component.find("");
   });
 
   it("should fail to find an h3", () => {
-    let props = {
+    const props = {
       headline: "little test component",
       paragraph: "kicking tires on this paragraph",
     };
-    let component = shallow(<TestComponentA {...props} />);
-    let notThere = component.find("h3");
+    const component = shallow(<TestComponentA {...props} />);
+    const notThere = component.find("h3");
     expect(notThere).not.toExist();
   });
 });
 
 describe("it should work with buttons", () => {
   it("should be able to click", () => {
-    let mock = jest.fn();
-    let wrapper = shallow(<ButtonTest sayHello={mock} />);
+    const mock = jest.fn();
+    const wrapper = shallow(<ButtonTest sayHello={mock} />);
     // let instance = wrapper.instance();
     // let spy = jest.spyOn(instance, "sayHello");
-    let btn = wrapper.find("button").first();
+    const btn = wrapper.find("button").first();
     console.log("btn text", btn.text());
     btn.simulate("click");
     expect(mock).toHaveBeenCalledTimes(1);
@@ -110,13 +110,13 @@ describe("it should work with buttons", () => {
 
 describe("it should test counter functionality", () => {
   it("should start at zer0", () => {
-    let wrapper = shallow(<IncrementTest />)
+    const wrapper = shallow(<IncrementTest />)
       .find(".counter")
       .text();
     expect(wrapper).toBe("current count 0");
   });
   it("should increment by one", () => {
-    let wrapper = shallow(<IncrementTest />);
+    const wrapper = shallow(<IncrementTest />);
     wrapper.find(".incrementcount").simulate("click");
     expect(wrapper.state("count")).toEqual(1);
   });

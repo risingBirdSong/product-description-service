@@ -118,12 +118,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // console.log("id ---->", this.props.match.params.id);
-    // const { id } = this.props.match.params;
     const id = window.location.pathname.slice(1, -1);
     axios.get(`/getsingleproduct/${id}`).then((results) => {
-      console.log("lookup ", starLookup[results.data.rating]);
-      console.log("style", results.data.styles);
       this.setState({
         product: results.data,
         style: results.data.styles[0],
@@ -137,13 +133,11 @@ class App extends React.Component {
 
     let display;
     if (product) {
-      console.log("star coordinates", this.state.starCoordinates);
       display = (
         <Wrapper>
           {/* {this.star} */}
 
           <ReviewImage />
-          <p className="testing">testing</p>
           <p>by {product.producer}</p>
           <h3 className="pCondense">{product.title}</h3>
           <div className="pCondense">
@@ -235,7 +229,6 @@ class App extends React.Component {
               marginBottom: "5px",
             }}
           >
-            {console.log("styles_____", product.styles)}
             {product.styles.map((style, idx) => (
               <div
                 onClick={() => {
