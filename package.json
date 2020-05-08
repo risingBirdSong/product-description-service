@@ -10,10 +10,12 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
-    "seed": "node database/seed.js"
+    "seed": "node database/seed.js",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "babel-jest": "^26.0.1",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "jest": "^26.0.1",
