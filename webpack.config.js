@@ -4,7 +4,7 @@ const SRC_DIR = path.join(__dirname, "/client");
 const DIST_DIR = path.join(__dirname, "/public");
 
 module.exports = {
-  entry: `${SRC_DIR}/App.jsx`,
+  entry: SRC_DIR,
   output: {
     filename: "bundle.js",
     path: DIST_DIR,
@@ -16,13 +16,12 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: "babel-loader",
-          options: {
-            plugins: ["babel-plugin-styled-components"],
-            presets: ["@babel/preset-react", "@babel/preset-env"],
-          },
         },
       },
     ],
+  },
+  resolve: {
+    extensions: [".js", ".jsx"],
   },
   // module: {
   //   loaders: [

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should test for props should send props 1`] = `
+<div>
+  <h1>
+    little test component
+  </h1>
+  <p>
+    kicking tires on this paragraph
+  </p>
+</div>
+`;

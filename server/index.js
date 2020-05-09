@@ -58,6 +58,7 @@ app.get("/getsingleproduct/:id", (req, res) => {
   const { id } = req.params;
   console.log("id", id);
   productDetail.findOne({ urlFriendlyNumber: id }).then((data) => {
+    console.log(data);
     res.json(data);
   });
 });

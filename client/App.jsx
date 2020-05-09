@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable class-methods-use-this */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
@@ -115,18 +117,68 @@ class App extends React.Component {
       style: null,
       selected: null,
     };
+    this._updateState = this._updateState.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const id = window.location.pathname.slice(1, -1);
-    axios.get(`/getsingleproduct/${id}`).then((results) => {
-      this.setState({
-        product: results.data,
-        style: results.data.styles[0],
-        starCoordinates: starLookup[results.data.rating],
-      });
+    const get = (await axios.get(`/getsingleproduct/${id || "001"}`)).data;
+    console.log("get", get);
+
+    this.setState({
+      product: get,
+      style: get.styles[0],
+      starCoordinates: starLookup[get.rating],
     });
   }
+
+  _updateState() {
+    const data = {
+      title: "Incredible Plastic Chicken",
+      description: "Sleek rich gold Rubber",
+      numberOfAnsweredQuestions: 1,
+      amazonsChoice: true,
+      primeDiscount: "4",
+      rating: 4,
+      numberOfRatings: 10,
+      currentPrice: 331,
+      inStock: true,
+      soldBy: "Sipes LLC",
+      styles: ["dynamic", "leading-edge"],
+      descriptions: [
+        "intuitive gold Unbranded Granite content",
+        "clicks-and-mortar teal Awesome Fresh systems",
+        "B2B white Handmade Plastic platforms",
+        "back-end teal Sleek Plastic channels",
+        "bleeding-edge black Incredible Plastic content",
+        "strategic fuchsia Unbranded Metal e-services",
+        "ubiquitous green Handcrafted Granite action-items",
+        "granular orange Licensed Concrete deliverables",
+      ],
+      freeShipping: false,
+      _id: "5eb367a5106b4c597cce37c0",
+      producer: "Hilll Group",
+      urlFriendlyNumber: "002",
+      wasPrice: 16,
+      __v: 0,
+    };
+
+    this.setState({
+      product: data,
+      style: data.styles[0],
+      starCoordinates: starLookup[data.rating],
+    });
+  }
+  // componentDidMount() {
+  //   const id = window.location.pathname.slice(1, -1);
+  //   axios.get(`/getsingleproduct/${id}`).then((results) => {
+  //     this.setState({
+  //       product: results.data,
+  //       style: results.data.styles[0],
+  //       starCoordinates: starLookup[results.data.rating],
+  //     });
+  //   });
+  // }
 
   render() {
     const { product } = this.state;
@@ -288,4 +340,4 @@ class App extends React.Component {
   }
 }
 
-ReactDom.render(<App />, document.getElementById("root"));
+export default App;
