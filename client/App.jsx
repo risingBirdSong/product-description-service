@@ -22,6 +22,8 @@ const UnderlineHover = styled.a`
   }
 `;
 
+console.log('practice doing it the proper way');
+
 const Wrapper = styled.div`
   width: 33%;
 `;
