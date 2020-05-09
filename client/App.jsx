@@ -25,7 +25,7 @@ const UnderlineHover = styled.a`
 `;
 
 const Wrapper = styled.div`
-  width: 20%;
+  width: 33%;
 `;
 
 const ReviewImage = styled.div`
