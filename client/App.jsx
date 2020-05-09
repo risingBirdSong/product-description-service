@@ -8,8 +8,6 @@ import ReactDom from "react-dom";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from "styled-components";
-import Landing from "./components/landing.jsx";
-import ItemDetail from "./components/itemdetail.jsx";
 
 const imgOptions = ["animals", "arch", "nature", "people"];
 // import { MyH2 } from "./styled.jsx";
