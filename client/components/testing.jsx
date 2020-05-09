@@ -12,7 +12,6 @@ const TestComponent = () => {
 };
 
 const TestComponentA = (props) => {
-  console.log(props);
   return (
     <div>
       <h1>{props.headline}</h1>
@@ -88,4 +87,11 @@ class GetTest extends React.Component {
   }
 }
 
-export { TestComponent, TestComponentA, ButtonTest, IncrementTest, GetTest, asyncTest };
+export {
+  TestComponent,
+  TestComponentA,
+  ButtonTest,
+  IncrementTest,
+  GetTest,
+  asyncTest,
+};
