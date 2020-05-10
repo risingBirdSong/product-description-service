@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -12,6 +13,8 @@ import MainProduct from "./components/Main-product";
 import StarImageComp from "./components/Star-image";
 import UnderlineHover from "./common";
 import RatingsAndQuestions from "./components/RatingsAndQuestions";
+import AzChoiceComp from "./components/AZChoice";
+import BasicInfo from "./components/BasicInfo";
 
 const imgOptions = ["animals", "arch", "nature", "people"];
 // import { MyH2 } from "./styled.jsx";
@@ -44,38 +47,6 @@ const starLookup = {
   4.5: -175,
   5: -5,
 };
-
-const Azchoice = styled.div`
-  background-color: rgb(35, 47, 62);
-  box-sizing: border-box;
-  color: rgb(17, 17, 17);
-  display: flex;
-  float: none;
-  font-family: "Amazon Ember", Arial, sans-serif;
-  font-size: 12px;
-  height: 15px;
-  line-height: 10px;
-  text-size-adjust: 100%;
-  justify-content: center;
-  align-items: center;
-  width: 80px;
-  overflow: hidden;
-`;
-
-// border-right-color: rgb(35, 47, 62);
-const Triangle = styled.div`
-  border-bottom-color: rgb(35, 47, 62);
-  border-left-color: rgb(35, 47, 62);
-  border-top-color: rgb(35, 47, 62);
-  color: rgb(35, 47, 62);
-  width: 0;
-  height: 0;
-  border-top: 35px solid transparent;
-  border-bottom: 35px solid transparent;
-  align-self: flex-end;
-  border-left: 22px solid;
-  background-color: white;
-`;
 
 // margin-left: 15px;
 // height: 200px;
@@ -119,87 +90,12 @@ class App extends React.Component {
             />
             &nbsp; | &nbsp;
             <RatingsAndQuestions numberOfRatings={product.numberOfRatings} numberOfAnsweredQuestions={product.numberOfAnsweredQuestions} />
-            {/* <UnderlineHover>
-              {product.numberOfRatings
-                ? `${product.numberOfRatings} ratings`
-                : ""}
-            </UnderlineHover>
-            <UnderlineHover>
-              {product.numberOfAnsweredQuestions ? (
-                <div>
-                  <span style={{ color: "black" }}> | </span>
-                  {product.numberOfAnsweredQuestions}
-                  {' '}
-                  answered questions
-                </div>
-              ) : (
-                  ""
-                )}
-            </UnderlineHover> */}
-            <div style={{ marginTop: "4px" }}>
-              {product.amazonsChoice ? (
-                <Azchoice>
-                  <p
-                    style={{
-                      color: "white",
-                      marginLeft: "16px",
-                      fontSize: "9px",
-                    }}
-                  >
-                    Amazon's
-                    {" "}
-                  </p>
-                  {" "}
-                  &nbsp;
-                  <p style={{ color: "orange", fontSize: "9px" }}> Choice</p>
-                  <Triangle />
-                </Azchoice>
-              ) : (
-                  ""
-                )}
-            </div>
+            <AzChoiceComp amazonsChoice={product.amazonsChoice} />
           </div>
           <hr />
-
-          <p className="pCondense">{product.description}</p>
-
-          <p className="pCondense">
-            {" "}
-            {product.primeDiscount ? "" : `discount : ${product.primeDiscount}`}
-          </p>
-
-          <p className="pCondense">
-            was
-            {" "}
-            <span style={{ textDecoration: "line-through" }}>
-              {" "}
-              $
-              {product.wasPrice}
-            </span>
-          </p>
-
-          <p className="pCondense">
-            {" "}
-            Price :
-            {" "}
-            <span style={{ color: "red" }}>
-              $
-              {product.currentPrice}
-            </span>
-            {" "}
-          </p>
-          <p
-            className="pCondense"
-            style={{ color: product.inStock ? "green" : "red" }}
-          >
-            {product.inStock ? "In Stock." : "Out of Stock."}
-          </p>
-          <p className="pCondense">
-            sold by :
-            {' '}
-            {product.soldBy}
-          </p>
-
+          {/* ignore this rule because it seems sometimes useful to spread props but i did read about it and if this componenent was more precise i woudlnt spread here. */}
+          <BasicInfo {...product} />
+        
           {this.state.style ? (
             <p style={{ color: "grey" }}>
               style :
