@@ -8,6 +8,8 @@ import ReactDom from "react-dom";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from "styled-components";
+import MainProduct from "./components/Main-product";
+import StarImageComp from "./components/Star-image";
 
 const imgOptions = ["animals", "arch", "nature", "people"];
 // import { MyH2 } from "./styled.jsx";
@@ -46,32 +48,6 @@ const starLookup = {
   5: -5,
 };
 
-// box-sizing: border-box;
-const StarImage = styled.div`
-  background-image: url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIIcon-sprite_2x-59b95eac1db4a9d78e1e0c0b657cf66277a106ae._V2_.png);
-  background-position-x: ${(props) => props.coords}px;
-  background-position-y: -368px;
-  background-repeat-x: ;
-  background-repeat-y: ;
-  background-size: 400px 900px;
-  color: rgb(0, 102, 192);
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Amazon Ember", Arial, sans-serif;
-  font-size: 13px;
-  font-style: italic;
-  height: 18px;
-  line-height: 19px;
-  position: relative;
-  text-size-adjust: 100%;
-  vertical-align: text-top;
-  width: 80px;
-`;
-
-// border-bottom-color: rgb(35, 47, 62);
-// border-left-color: rgb(35, 47, 62);
-// border-right-color: rgb(35, 47, 62);
-// border-top-color: rgb(35, 47, 62);
 const Azchoice = styled.div`
   background-color: rgb(35, 47, 62);
   box-sizing: border-box;
@@ -117,7 +93,6 @@ class App extends React.Component {
       style: null,
       selected: null,
     };
-    this._updateState = this._updateState.bind(this);
   }
 
   async componentDidMount() {
@@ -132,54 +107,6 @@ class App extends React.Component {
     });
   }
 
-  _updateState() {
-    const data = {
-      title: "Incredible Plastic Chicken",
-      description: "Sleek rich gold Rubber",
-      numberOfAnsweredQuestions: 1,
-      amazonsChoice: true,
-      primeDiscount: "4",
-      rating: 4,
-      numberOfRatings: 10,
-      currentPrice: 331,
-      inStock: true,
-      soldBy: "Sipes LLC",
-      styles: ["dynamic", "leading-edge"],
-      descriptions: [
-        "intuitive gold Unbranded Granite content",
-        "clicks-and-mortar teal Awesome Fresh systems",
-        "B2B white Handmade Plastic platforms",
-        "back-end teal Sleek Plastic channels",
-        "bleeding-edge black Incredible Plastic content",
-        "strategic fuchsia Unbranded Metal e-services",
-        "ubiquitous green Handcrafted Granite action-items",
-        "granular orange Licensed Concrete deliverables",
-      ],
-      freeShipping: false,
-      _id: "5eb367a5106b4c597cce37c0",
-      producer: "Hilll Group",
-      urlFriendlyNumber: "002",
-      wasPrice: 16,
-      __v: 0,
-    };
-
-    this.setState({
-      product: data,
-      style: data.styles[0],
-      starCoordinates: starLookup[data.rating],
-    });
-  }
-  // componentDidMount() {
-  //   const id = window.location.pathname.slice(1, -1);
-  //   axios.get(`/getsingleproduct/${id}`).then((results) => {
-  //     this.setState({
-  //       product: results.data,
-  //       style: results.data.styles[0],
-  //       starCoordinates: starLookup[results.data.rating],
-  //     });
-  //   });
-  // }
-
   render() {
     const { product } = this.state;
 
@@ -187,16 +114,12 @@ class App extends React.Component {
     if (product) {
       display = (
         <Wrapper>
-          {/* {this.star} */}
-
-          <ReviewImage />
-          <p>by {product.producer}</p>
-          <h3 className="pCondense">{product.title}</h3>
+          <MainProduct producer={product.producer} title={product.title} />
           <div className="pCondense">
-            <StarImage
-              aria-label={`rated ${this.state.product.rating} out of 5 stars`}
+            <StarImageComp
+              rating={product.rating}
               coords={this.state.starCoordinates}
-            />{" "}
+            />
             &nbsp; | &nbsp;
             <UnderlineHover>
               {product.numberOfRatings
