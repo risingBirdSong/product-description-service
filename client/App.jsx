@@ -22,7 +22,7 @@ const UnderlineHover = styled.a`
   }
 `;
 
-console.log('practice doing it the proper way');
+console.log("testing to make sure i cant push direct to master");
 
 const Wrapper = styled.div`
   width: 33%;
