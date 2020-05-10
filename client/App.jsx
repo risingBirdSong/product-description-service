@@ -10,6 +10,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from "styled-components";
 import MainProduct from "./components/Main-product";
 import StarImageComp from "./components/Star-image";
+import UnderlineHover from "./common";
+import RatingsAndQuestions from "./components/RatingsAndQuestions";
 
 const imgOptions = ["animals", "arch", "nature", "people"];
 // import { MyH2 } from "./styled.jsx";
@@ -17,12 +19,7 @@ const MyH2 = styled.h2`
   color: red;
 `;
 
-const UnderlineHover = styled.a`
-  color: blue;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
+
 
 console.log("testing to make sure i cant push direct to master");
 
@@ -121,7 +118,8 @@ class App extends React.Component {
               coords={this.state.starCoordinates}
             />
             &nbsp; | &nbsp;
-            <UnderlineHover>
+            <RatingsAndQuestions numberOfRatings={product.numberOfRatings} numberOfAnsweredQuestions={product.numberOfAnsweredQuestions} />
+            {/* <UnderlineHover>
               {product.numberOfRatings
                 ? `${product.numberOfRatings} ratings`
                 : ""}
@@ -130,12 +128,14 @@ class App extends React.Component {
               {product.numberOfAnsweredQuestions ? (
                 <div>
                   <span style={{ color: "black" }}> | </span>
-                  {product.numberOfAnsweredQuestions} answered questions
+                  {product.numberOfAnsweredQuestions}
+                  {' '}
+                  answered questions
                 </div>
               ) : (
-                ""
-              )}
-            </UnderlineHover>
+                  ""
+                )}
+            </UnderlineHover> */}
             <div style={{ marginTop: "4px" }}>
               {product.amazonsChoice ? (
                 <Azchoice>
@@ -146,15 +146,17 @@ class App extends React.Component {
                       fontSize: "9px",
                     }}
                   >
-                    Amazon's{" "}
-                  </p>{" "}
+                    Amazon's
+                    {" "}
+                  </p>
+                  {" "}
                   &nbsp;
                   <p style={{ color: "orange", fontSize: "9px" }}> Choice</p>
                   <Triangle />
                 </Azchoice>
               ) : (
-                ""
-              )}
+                  ""
+                )}
             </div>
           </div>
           <hr />
@@ -167,17 +169,24 @@ class App extends React.Component {
           </p>
 
           <p className="pCondense">
-            was{" "}
+            was
+            {" "}
             <span style={{ textDecoration: "line-through" }}>
               {" "}
-              ${product.wasPrice}
+              $
+              {product.wasPrice}
             </span>
           </p>
 
           <p className="pCondense">
             {" "}
-            Price :{" "}
-            <span style={{ color: "red" }}>${product.currentPrice}</span>{" "}
+            Price :
+            {" "}
+            <span style={{ color: "red" }}>
+              $
+              {product.currentPrice}
+            </span>
+            {" "}
           </p>
           <p
             className="pCondense"
@@ -185,15 +194,22 @@ class App extends React.Component {
           >
             {product.inStock ? "In Stock." : "Out of Stock."}
           </p>
-          <p className="pCondense">sold by : {product.soldBy}</p>
+          <p className="pCondense">
+            sold by :
+            {' '}
+            {product.soldBy}
+          </p>
 
           {this.state.style ? (
             <p style={{ color: "grey" }}>
-              style : <span style={{ color: "black" }}>{this.state.style}</span>{" "}
+              style :
+              {' '}
+              <span style={{ color: "black" }}>{this.state.style}</span>
+              {" "}
             </p>
           ) : (
-            ""
-          )}
+              ""
+            )}
           <div
             style={{
               display: "flex",
@@ -216,7 +232,7 @@ class App extends React.Component {
                     this.state.selected === idx
                       ? "1px solid orange"
                       : "1px solid grey"
-                  }`,
+                    }`,
                   margin: "4px",
                   padding: "6px",
                   paddingLeft: "15px",
@@ -227,12 +243,13 @@ class App extends React.Component {
                   // style={{ padding: "10px" }}
                   src={`https://placeimg.com/20/20/${
                     imgOptions[Math.floor(Math.random() * imgOptions.length)]
-                  }`}
+                    }`}
                   alt="images of the different product styles, note, they're fake"
                 />
                 <div style={{ marginLeft: "5px" }}>
                   <p style={{ marginTop: "14px", fontSize: "10px" }}>
-                    ${product.currentPrice}
+                    $
+                    {product.currentPrice}
                   </p>
                   <p style={{ marginTop: "-12px", fontSize: "10px" }}>prime</p>
                 </div>
