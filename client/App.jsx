@@ -15,6 +15,8 @@ import UnderlineHover from "./common";
 import RatingsAndQuestions from "./components/RatingsAndQuestions";
 import AzChoiceComp from "./components/AZChoice";
 import BasicInfo from "./components/BasicInfo";
+import StyleComp from "./components/Style";
+import StyleImage from "./components/StyleImage";
 
 const imgOptions = ["animals", "arch", "nature", "people"];
 // import { MyH2 } from "./styled.jsx";
@@ -61,6 +63,7 @@ class App extends React.Component {
       style: null,
       selected: null,
     };
+    this.styleHandler = this.styleHandler.bind(this);
   }
 
   async componentDidMount() {
@@ -74,6 +77,11 @@ class App extends React.Component {
       starCoordinates: starLookup[get.rating],
     });
   }
+
+  styleHandler(idx, style) {
+    this.setState({ selected: idx, style });
+  }
+
 
   render() {
     const { product } = this.state;
@@ -95,8 +103,9 @@ class App extends React.Component {
           <hr />
           {/* ignore this rule because it seems sometimes useful to spread props but i did read about it and if this componenent was more precise i woudlnt spread here. */}
           <BasicInfo {...product} />
-        
-          {this.state.style ? (
+          <StyleComp style={this.state.style} />
+          <StyleImage selected={this.state.selected} styles={product.styles} currentPrice={product.currentPrice} handler={this.styleHandler} />
+          {/* {this.state.style ? (
             <p style={{ color: "grey" }}>
               style :
               {' '}
@@ -105,8 +114,8 @@ class App extends React.Component {
             </p>
           ) : (
               ""
-            )}
-          <div
+            )} */}
+          {/* <div
             style={{
               display: "flex",
               alignItems: "center",
@@ -151,7 +160,7 @@ class App extends React.Component {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
           <ul style={{ marginTop: "-5px" }}>
             {product.descriptions.map((value, idx) => {
               return <li key={String(idx).padStart(3, "0")}>{value}</li>;
