@@ -17,6 +17,10 @@ import AzChoiceComp from "./components/AZChoice";
 import BasicInfo from "./components/BasicInfo";
 import StyleComp from "./components/Style";
 import StyleImage from "./components/StyleImage";
+import Descriptions from "./components/Descriptions";
+import Paragraphs from "./components/Paragraphs";
+import Report from "./components/Report";
+import WhiteSpace from "./components/WhiteSpace";
 
 const imgOptions = ["animals", "arch", "nature", "people"];
 // import { MyH2 } from "./styled.jsx";
@@ -96,7 +100,9 @@ class App extends React.Component {
               rating={product.rating}
               coords={this.state.starCoordinates}
             />
-            &nbsp; | &nbsp;
+            <WhiteSpace />
+            |
+            <WhiteSpace />
             <RatingsAndQuestions numberOfRatings={product.numberOfRatings} numberOfAnsweredQuestions={product.numberOfAnsweredQuestions} />
             <AzChoiceComp amazonsChoice={product.amazonsChoice} />
           </div>
@@ -105,73 +111,9 @@ class App extends React.Component {
           <BasicInfo {...product} />
           <StyleComp style={this.state.style} />
           <StyleImage selected={this.state.selected} styles={product.styles} currentPrice={product.currentPrice} handler={this.styleHandler} />
-          {/* {this.state.style ? (
-            <p style={{ color: "grey" }}>
-              style :
-              {' '}
-              <span style={{ color: "black" }}>{this.state.style}</span>
-              {" "}
-            </p>
-          ) : (
-              ""
-            )} */}
-          {/* <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              width: "auto",
-              marginLeft: "3px",
-              marginTop: "-10px",
-              marginBottom: "5px",
-            }}
-          >
-            {product.styles.map((style, idx) => (
-              <div
-                onClick={() => {
-                  this.setState({ selected: idx, style });
-                }}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  border: `${
-                    this.state.selected === idx
-                      ? "1px solid orange"
-                      : "1px solid grey"
-                    }`,
-                  margin: "4px",
-                  padding: "6px",
-                  paddingLeft: "15px",
-                  height: "30px",
-                }}
-              >
-                <img
-                  // style={{ padding: "10px" }}
-                  src={`https://placeimg.com/20/20/${
-                    imgOptions[Math.floor(Math.random() * imgOptions.length)]
-                    }`}
-                  alt="images of the different product styles, note, they're fake"
-                />
-                <div style={{ marginLeft: "5px" }}>
-                  <p style={{ marginTop: "14px", fontSize: "10px" }}>
-                    $
-                    {product.currentPrice}
-                  </p>
-                  <p style={{ marginTop: "-12px", fontSize: "10px" }}>prime</p>
-                </div>
-              </div>
-            ))}
-          </div> */}
-          <ul style={{ marginTop: "-5px" }}>
-            {product.descriptions.map((value, idx) => {
-              return <li key={String(idx).padStart(3, "0")}>{value}</li>;
-            })}
-          </ul>
-          <p>{product.extraInfo}</p>
-          <p>{product.compareOptions}</p>
-          <p>{product.technicalDetails}</p>
-          <p>{product.Used}</p>
-          <p>{product.freeShipping}</p>
-          <UnderlineHover>Report incorrect product information.</UnderlineHover>
+          <Descriptions descriptions={product.descriptions} />
+          <Paragraphs {...product} />
+          <Report />
         </Wrapper>
       );
     } else {
