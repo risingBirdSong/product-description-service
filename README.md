@@ -35,4 +35,8 @@ From within the root directory:
 ```sh
 npm install -g webpack
 npm install
+npm start
+npm run react-dev
 ```
+
+navigate to localhost/3002/001 through 100 to see product details

@@ -1,17 +1,30 @@
 const express = require("express");
 const faker = require("faker");
+const cors = require("cors");
 const { productDetail, myConnection, fakeData } = require("../database");
+
+const PORT = process.env.PORT || 3002;
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 // app.use(express.static("public"));
-app.use("/:id", express.static(`${__dirname}/../public`));
 
 // todo
 
 // general testing route
 
+app.get("/getbundle", (req, res) => {
+  console.log("hitting");
+  // console.log("path", `${__dirname}../public/bundle.js`);
+  res.sendFile(`${__dirname}/../public/bundle.js`);
+  // res.send(express.static(`${__dirname}./public/bundle.js`));
+  // res.send(express.static(`${__dirname}../public/bundle.js`));
+  // res.send("test bundle!");
+});
+
+app.use("/:id", express.static(`${__dirname}/../public`));
 // make a single product
 app.post("/makeproduct", (req, res) => {
   const newProductTemplate = {
@@ -70,4 +83,4 @@ app.get("/getallproducts", (req, res) => {
   });
 });
 
-app.listen(3002, () => console.log("listening on port 3002"));
+app.listen(PORT, () => console.log("listening on port 3002"));
