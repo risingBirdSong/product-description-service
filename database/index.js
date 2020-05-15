@@ -2,8 +2,6 @@ const mongoose = require("mongoose");
 const faker = require("faker");
 const dotenv = require("dotenv").config();
 
-console.log("env==>>>>", process.env.DB);
-
 const myConnection = mongoose.connect(process.env.DB);
 /* .then(() => {
     console.log("hurray were connected");
