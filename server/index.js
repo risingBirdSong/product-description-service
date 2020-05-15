@@ -80,8 +80,8 @@ myConnection
     });
     app.use("/:id", express.static(`${__dirname}/../public`));
 
-    app.listen(PORT, () => console.log("listening on port 3002"));
+    app.listen(PORT, () => console.log(`listening on port ${PORT}`));
   })
   .catch((err) => {
-    console.log("err=====>", err);
+    console.log("err =====>", err);
   });
