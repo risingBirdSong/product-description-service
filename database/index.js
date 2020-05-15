@@ -85,10 +85,10 @@ const productdetailsSchema = mongoose.Schema({
   },
 });
 
-const productDetail = mongoose.model("productDetails", productdetailsSchema);
+const productDetails = mongoose.model("productdetails", productdetailsSchema);
 
 // make an array of fake descriptions
 
 console.log("made db");
 
-module.exports = { productDetail, myConnection };
+module.exports = { productDetails, myConnection };

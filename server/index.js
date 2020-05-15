@@ -1,7 +1,7 @@
 const express = require("express");
 const faker = require("faker");
 const cors = require("cors");
-const { productDetail, myConnection, fakeData } = require("../database");
+const { productDetails, myConnection, fakeData } = require("../database");
 const dotenv = require("dotenv").config();
 
 const PORT = process.env.PORT || 8080;
@@ -23,7 +23,6 @@ myConnection
     // todo
 
     // general testing route
-    app.use("/:id", express.static(`${__dirname}/../public`));
 
     app.get("/getbundle", (req, res) => {
       console.log("hitting");
@@ -50,8 +49,9 @@ myConnection
         style: req.body.style || "basic style",
         descriptions: req.body.descriptions || [],
         freeShipping: req.body.freeShipping || false,
+        urlFriendlyNumber: "011",
       };
-      const myProduct = new productDetail(newProductTemplate);
+      const myProduct = new productDetails(newProductTemplate);
       myProduct.save();
       res.json(myProduct);
     });
@@ -59,13 +59,13 @@ myConnection
     // delete all from db
     app.delete("/deleteAll", (req, res) => {
       // why not delete?
-      productDetail.deleteMany().then((deleted) => {
+      productDetails.deleteMany().then((deleted) => {
         res.send(deleted);
       });
     });
 
     app.get("/getallproducts", (req, res) => {
-      productDetail.find().then((data) => {
+      productDetails.find().then((data) => {
         console.log("hitting==>>>>", data);
         res.json(data);
       });
@@ -74,11 +74,13 @@ myConnection
     app.get("/getsingleproduct/:id", (req, res) => {
       const { id } = req.params;
       console.log("hitting");
-      productDetail.findOne({ urlFriendlyNumber: id }).then((data) => {
+      productDetails.findOne({ urlFriendlyNumber: id }).then((data) => {
         console.log("data from single product", data);
         res.json(data);
       });
     });
+
+    app.use("/:id", express.static(`${__dirname}/../public`));
 
     app.listen(PORT, () => console.log(`listening on port ${PORT}`));
   })
