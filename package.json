@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node server/index.js",
-    "build:dev": "nodemon server/index.js",
+    "build:prod": "node server/index.js",
     "react:build": "webpack -d",
     "build": "npm run react:build & npm run build:prod",
     "react-dev": "webpack -d --watch",
