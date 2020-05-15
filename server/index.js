@@ -8,6 +8,10 @@ const PORT = process.env.PORT || 3002;
 
 const app = express();
 
+app.get("/test", (req, res) => {
+  res.send("testing testing");
+});
+
 myConnection
   .then(() => {
     console.log("hurray were connected");
