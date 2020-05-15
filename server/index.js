@@ -4,7 +4,7 @@ const cors = require("cors");
 const { productDetail, myConnection, fakeData } = require("../database");
 const dotenv = require("dotenv").config();
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 
