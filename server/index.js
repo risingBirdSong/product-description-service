@@ -23,6 +23,7 @@ myConnection
     // todo
 
     // general testing route
+    app.use("/:id", express.static(`${__dirname}/../public`));
 
     app.get("/getbundle", (req, res) => {
       console.log("hitting");
@@ -78,7 +79,6 @@ myConnection
         res.json(data);
       });
     });
-    app.use("/:id", express.static(`${__dirname}/../public`));
 
     app.listen(PORT, () => console.log(`listening on port ${PORT}`));
   })

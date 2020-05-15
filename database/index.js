@@ -2,9 +2,13 @@ const mongoose = require("mongoose");
 const faker = require("faker");
 const dotenv = require("dotenv").config();
 
-console.log("env", process.env);
-console.log("custom conn str", process.env.CUSTOMCONNSTR_DB);
-const myConnection = mongoose.connect(process.env.CUSTOMCONNSTR_DB);
+// console.log("env", process.env);
+// console.log("custom conn str", process.env.CUSTOMCONNSTR_DB);
+const myConnection = mongoose.connect(process.env.DB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+// const myConnection = mongoose.connect(process.env.CUSTOMCONNSTR_DB);
 /* .then(() => {
     console.log("hurray were connected");
   })
