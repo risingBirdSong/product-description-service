@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 const faker = require("faker");
 const { productDetail } = require("./index");
 
-const mySeedConnection = mongoose.connect(
-  "mongodb://127.0.0.1/fec_amazon_products"
-);
+// const mySeedConnection = mongoose.connect(
+//   "mongodb://127.0.0.1/fec_amazon_products"
+// );
+const mySeedConnection = mongoose.connect(`${process.env.DB}`);
 
 const fakeDescriptions = () => {
   const howMany = faker.random.number(10);
@@ -58,6 +59,7 @@ const makeNAmount = (amount) => {
     .map((zero, idx) => makeFake(idx));
 };
 
-const fakeData = makeNAmount(100);
+makeNAmount(10);
+// console.log("fakeData", fakeData);
 
 mongoose.connection.close();

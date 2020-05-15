@@ -1,10 +1,20 @@
 const mongoose = require("mongoose");
 const faker = require("faker");
+const dotenv = require("dotenv").config();
 
-const myConnection = mongoose.connect(
-  "mongodb://127.0.0.1/fec_amazon_products"
-);
+console.log("env==>>>>", process.env.DB);
 
+const myConnection = mongoose.connect(process.env.DB);
+/* .then(() => {
+    console.log("hurray were connected");
+  })
+  .catch((err) => {
+    console.log("err=====>", err);
+  }); */
+// const myConnection = mongoose.connect(
+//   "mongodb://127.0.0.1/fec_amazon_products"
+// );
+// mongodb://127.0.0.1/fec_amazon_products
 const productdetailsSchema = mongoose.Schema({
   producer: String,
   urlFriendlyNumber: String,
@@ -71,7 +81,11 @@ const productdetailsSchema = mongoose.Schema({
   },
 });
 
-const productDetail = mongoose.model("productDetail", productdetailsSchema);
+const productDetail = mongoose.model(
+  "productDetail",
+  productdetailsSchema,
+  "productDetail"
+);
 
 // make an array of fake descriptions
 
