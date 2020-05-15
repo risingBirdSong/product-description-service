@@ -11,6 +11,7 @@
     "start": "nodemon server/index.js",
     "build:prod": "node server/index.js",
     "react:build": "webpack -d",
+    "build:deploy": "npm run react:build & npm run build:prod",
     "react-dev": "webpack -d --watch",
     "seed": "node database/seed.js",
     "test": " jest --watch",
