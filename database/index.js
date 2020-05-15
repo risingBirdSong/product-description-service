@@ -4,7 +4,9 @@ const dotenv = require("dotenv").config();
 
 // console.log("env", process.env);
 // console.log("custom conn str", process.env.CUSTOMCONNSTR_DB);
-const myConnection = mongoose.connect(process.env.DB, {
+
+//stackoverflow.com/questions/50173080/mongonetworkerror-failed-to-connect-to-server-localhost27017-on-first-connec
+https: const myConnection = mongoose.connect(process.env.CUSTOMCONNSTR_DB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
