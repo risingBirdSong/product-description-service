@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const faker = require("faker");
 const dotenv = require("dotenv").config();
 
+console.log("env", process.env);
 console.log("custom conn str", process.env.CUSTOMCONNSTR_DB);
 const myConnection = mongoose.connect(process.env.CUSTOMCONNSTR_DB);
 /* .then(() => {
